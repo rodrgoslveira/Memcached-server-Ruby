@@ -32,9 +32,11 @@ class MemCacheClient
   #CACHE METHODS
   def get(keys)
     self.storeMessage("get #{keys}\r\n")
-    infoLine = (@clientSocket.gets).chomp
-    values =  (@clientSocket.gets).chomp
-    return values
+    respone = ""
+    while line = @clientSocket.gets     # Read lines from the socket
+        response = "#{response}#{line.chop}\r\n"
+     end
+    return response
   end
 
 end
