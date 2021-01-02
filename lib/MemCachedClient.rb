@@ -22,10 +22,19 @@ class MemCacheClient
   end
 
   def listen
-    puts "\n--------------------------------------SERVER MESSAGE\n"
+
     while line = self.clientSocket.gets     # Read lines from the socket
         puts line.chop
      end
-    puts "\n----------------------------------------------------\n"
+
   end
+
+  #CACHE METHODS
+  def get(keys)
+    self.storeMessage("get #{keys}\r\n")
+    infoLine = (@clientSocket.gets).chomp
+    values =  (@clientSocket.gets).chomp
+    return values
+  end
+
 end
