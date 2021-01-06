@@ -1,32 +1,49 @@
-require_relative '../lib/memCachedModules'
-@counter = 0
-@m = Mutex.new
-def incrCounter()
-  @m.synchronize do
-    @counter += 1
-  end
+#BASIC IMPLEMENTATION OF MEMCACHEDCLIENT SIMILAR TO TELNET
+#FIRST INPUT HOST,PORT
+#COMMANDS:
+#:] MEANS TO EXIT
+#MEMCACHED COMMANDS: get gets set add replace append prepend cas
+#:>RESPONSE FROM SERVER
+require 'socket'
+begin
+  i = 0
+  puts "MemCached-[host port]"
+  intro = $stdin.gets.chomp
+  host,port = intro.split(/ /)
+  i += 1
+  @clientSocket = TCPSocket.open(host,port.to_i)
+  @status = "CONNECTED"
+  puts "MemCached-#{@status}- input ':]' to exit"
+rescue Exception => e
+  errorMssg = "An error ocurred, try again\r\n"
+  puts errorMssg
+  retry if i < 3
+  puts ":>EXCEPTION: #{e.inspect}"
+  puts ":>MESSAGE: #{e.message}"
+  puts ":>LOCATION:#{e.backtrace_locations}"
 end
-cliente = MemCacheClient.new('localhost',2000)
-
-#  <command name> <key> <flags> <exptime> <bytes> [noreply]\r\n
-
-        cliente.storeMessage("set key1 1 3600 1 \r\n0\r\n")
-        cliente.listen
-        cliente.closeConnection
-        threads = []
-        #-------------------------------------------------------------------------------------
-        4.times do
-          threads <<  Thread.new {
-              clienteI = MemCacheClient.new('localhost',2000)
-              incrCounter()
-              clienteI.openConnection
-              clienteI.storeMessage("set key#{@counter} 1 3600 30 \r\nEl #{@counter}\r\n")
-              clienteI.closeConnection
-            }
-       end
-
-      puts "threads lenght = #{threads.length}"
-      threads.each(&:join)
-      cliente.openConnection
-      puts cliente.get("key1 key2 key3 key4")
-      cliente.closeConnection
+  listen = Thread.new {
+    while line = @clientSocket.gets
+        puts ":> #{line.chomp}"
+        if @status == "DISCONNECTED"
+          break;
+        end
+    end
+  }
+  send = Thread.new {
+    loop {
+      input = $stdin.gets.chomp
+      if input == ":]"
+        @clientSocket.puts("exit")
+        @status = "DISCONNECTED"
+        break;
+      else
+          @clientSocket.puts("#{input}\r\n")
+      end
+      sleep(0.1)
+    }
+  }
+  send.join
+  listen.join
+  @clientSocket.close
+  puts "MemCached-#{@status}"

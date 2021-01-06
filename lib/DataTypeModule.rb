@@ -1,11 +1,13 @@
+module DataTypeModule
    class CacheDataType
-     attr_reader :key, :data, :flags, :exptime, :bytes
-     def initialize(itemKey, itemData, itemFlags, itemExptime,itemBytes)
+     attr_reader :key, :data, :flags, :exptime, :bytes, :cas, :semaphore
+     def initialize(itemKey, itemData, itemFlags, itemExptime,itemBytes,itemCas)
        @key = itemKey
        @data = itemData
        @flags = itemFlags
        @exptime = self.getExpTimeValue(itemExptime)
        @bytes = itemBytes
+       @cas = itemCas
      end
 
      def getExpTimeValue(seconds)
@@ -20,3 +22,12 @@
      end
 
    end#class
+   #works for MemCachedClient.gets
+   class CasDataType
+     attr_reader :cas, :data
+     def initialize(itemCas, itemData)
+       @cas = itemCas
+       @data = itemData
+     end
+   end
+end#module
