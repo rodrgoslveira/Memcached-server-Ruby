@@ -1,6 +1,7 @@
-require_relative '../lib/memCachedModules'
+require_relative '../lib/MemCached'
+
 begin
-  server = MemCacheServer.new(2000)
+  server = MemCacheServer.new('127.0.0.53',2000)
   server.runServerToListen
 rescue Exception => e
   puts "ERROR"
