@@ -52,15 +52,15 @@ Storage commands:
     
 #### MemCachedServer
 
-    We have to define the host and port for the Socket to listen and then say the server to listen.
+   We have to define the host and port for the Socket to listen and then say to the server to listen.
 
 ```ruby
   server = MemCacheServer.new('127.0.0.53',2000)
   server.runServerToListen
 ```
 #### MemCachedClient
-    First we need the server to be running, after that we can define the host and port for the Socket.
-    Here are some basic examples.
+   First we need the server to be running,then we can define the host and port for the Socket.
+   Here are some basic examples.
   
    - Example one: 
    
@@ -112,7 +112,7 @@ Second Console|
 #### Synchronization Mechanisms 
 
    Managing multiple clients and making Memcached thread safe was a challenge. The priority is simplicity, safety and perfomance.
-   A first and more common approach was to use coarse-grained locking with thread safety provided by a single global cache lock but      this aproach has a significant performance penalty.
+   A first and more common approach was to use coarse-grained locking, thread safety provided by a single global cache lock but          this aproach has a could have a significant performance penalty.
    
    In order to optimize memchached perfomance,I investigated techniques to minimize or eliminate the global cache lock.
    
@@ -137,14 +137,10 @@ Second Console|
 ## Test
 
 
-* We need the server MemCachedServer to be running.
+:warning:	 We need the server (MemCachedServer) to be running.
+
 * Console command : ruby mctest.rb
 
- Important to know that the sockets of the test listen to:
- 
- ```ruby
- @mcClient = MemCacheClient.new('127.0.0.53',2000)
-```
 
 [Back To The Top](#Memcached-server-Ruby)
 
