@@ -1,7 +1,10 @@
 require_relative '../lib/MemCached'
 #Simple server running
 begin
-  server = MemCacheServer.new('127.0.0.53',2000)
+  puts "MemCachedServer-[host port]"
+  intro = $stdin.gets.chomp
+  host,port = intro.split(/ /)
+  server = MemCacheServer.new(host,port.to_i)
   server.runServerToListen
 rescue Exception => e
   puts "ERROR"
