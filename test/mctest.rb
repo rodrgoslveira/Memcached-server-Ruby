@@ -1,9 +1,12 @@
 require 'minitest/autorun'
 require_relative '../lib/MemCached'
 #the server needs to be running before the execution of this test
+puts "MemCached Test-[host port]"
+intro = $stdin.gets.chomp
+host,port = intro.split(/ /)
 describe "MemCachedClient test" do
   before do
-    @mcClient = MemCacheClient.new('127.0.0.53',2000)
+    @mcClient = MemCacheClient.new(host,port)
   end
   it "set an item" do
     @mcClient.set("key1","w","0","MainData".bytesize,"MainData").must_equal "STORED"
