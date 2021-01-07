@@ -4,7 +4,7 @@ Simple memcached implementation.
 
 - [Description](#description)
 - [How To Use](#how-to-use)
-- [MemCached Thread Safe](#MemCached-Thread-Safe)
+- [Details](#details)
 - [Author Info](#author-info)
 
 ---
@@ -35,8 +35,9 @@ This has been implement for [moove it coding challenges](https://github.com/moov
 [Back To The Top](#Memcached-server-Ruby)
 
 ---
+## Details
 
-## MemCached Thread Safe
+#### MemCached Thread Safe
 [Back To The Top](#Memcached-server-Ruby)
 
 ---
