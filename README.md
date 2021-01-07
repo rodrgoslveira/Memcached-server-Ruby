@@ -5,7 +5,9 @@ Simple memcached implementation.
 - [Description](#description)
 - [How To Use](#how-to-use)
 - [Details](#details)
+- [Test](#test)
 - [Author Info](#author-info)
+
 
 ---
 
@@ -20,17 +22,17 @@ Has been implemented for [moove it coding challenges](https://github.com/moove-i
 
 Retrieval commands:
 
-*get
-*gets
+* get
+* gets
 
 Storage commands:
 
-*set
-*add
-*replace
-*append
-*prepend
-*cas
+* set
+* add
+* replace
+* append
+* prepend
+* cas
 
 
 #### Technologies
@@ -93,7 +95,7 @@ Storage commands:
 
 First Console |
 ------------ | 
- ![Server execution](/images/MemcachedServer-example.jpg) | 
+ ![Server execution](https://github.com/rodrgoslveira/Memcached-server-Ruby/blob/main/images/MemcachedServer-example.jpg) | 
  
 Second Console|
 ------------ | 
@@ -119,13 +121,23 @@ Second Console|
    The access to this segments depends on a hash function that takes the key as parameter.
    
    Simple diagram:
-   IMAGEEEE
+   
+   ![Segmented locks](https://github.com/rodrgoslveira/Memcached-server-Ruby/blob/main/images/Segmented-locks.jpg)
    
    The disadvantage of this approach is that multiple frequently accessed cache items in a single segment can produce performance        penalty
    
 #### MemCached Design
-    IMAGEEE
+
+    ![Segmented locks](https://github.com/rodrgoslveira/Memcached-server-Ruby/blob/main/images/DCD.jpg)
     
+[Back To The Top](#Memcached-server-Ruby)
+---
+## Test
+
+* We need the server MemCachedServer to be running.
+* Console command : ruby mctest.rb
+
+
 [Back To The Top](#Memcached-server-Ruby)
 
 ---
