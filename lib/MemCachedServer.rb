@@ -1,7 +1,6 @@
 require 'socket'
 require_relative 'MemCached'
 
-
 class MemCacheServer
   include DataTypeModule
   attr_accessor :port, :serverSocket, :memoryCache
@@ -18,13 +17,13 @@ class MemCacheServer
     loop {
       Thread.start(self.serverSocket.accept) do |connectionSocket|
         begin
-          puts ":>Openning connection with: #{connectionSocket.to_s} "
+          puts ":>Openning connection with: #{connectionSocket.to_s}"
           keepListening = true
           while keepListening
               dataIncoming = connectionSocket.gets # Read line from the socket
               keepListening = requestHandler(dataIncoming.chomp,connectionSocket) unless dataIncoming.nil?
           end
-          puts ":>Closing connection with: #{connectionSocket.to_s} "
+          puts ":>Closing connection with: #{connectionSocket.to_s}"
           connectionSocket.close # Disconnect from the client
         rescue Exception => e
           errorMssg = "SERVER_ERROR an error ocurred, closing connection\r\n"
@@ -78,6 +77,7 @@ private
     end
     return result
   end
+  #CASE: RETRIEVAL COMMANDS
   # Each item sent by the server looks like this:
   # VALUE <key> <flags> <bytes> [<cas unique>]\r\n
   # <data block>\r\n
@@ -104,13 +104,15 @@ private
     end
     return finalString
   end
-#Storage Commands: <command name> <key> <flags> <exptime> <bytes> [noreply]\r\n
+#CASE: STORAGE COMMANDS
+#Storage Commands looks like: <command name> <key> <flags> <exptime> <bytes> [noreply]\r\n<Data Block>
+#The server has to send a response message, do not send only if [noreply].
   def storageHandler(commandLine,client,command)
     response = Array.new(2,true)
       case command
       when "set"
         command,key,flags,exptime,bytes,noreply = commandLine.split(/ /)
-        dataBlock = client.read(bytes.to_i + 2).chomp
+        dataBlock = client.read(bytes.to_i + 2).chomp # +2 means read \r\n
         response[1] = self.memoryCache.set(key,flags,exptime,dataBlock,bytes)
       when "add"
         command,key,flags,exptime,bytes,noreply = commandLine.split(/ /)
@@ -138,6 +140,6 @@ private
     if !condition
       response[0] = false unless noreply.nil?
     end
-    return response
+      return response
   end
-end#class
+end
