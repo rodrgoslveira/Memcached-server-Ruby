@@ -14,8 +14,10 @@ Simple memcached implementation.
 ## Description
 
 This basic implementation of memcached:
+
 - Memcached Server(TCP/IP socket).
 - Memcached Client(TCP/IP socket).
+
 Has been implemented for [moove it coding challenges](https://github.com/moove-it/coding-challenges/blob/master/ruby.md)
 
 #### Commands Implemented
