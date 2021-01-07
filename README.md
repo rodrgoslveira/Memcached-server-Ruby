@@ -111,7 +111,7 @@ Second Console|
 
 #### Synchronization Mechanisms 
 
-   Managing multiple clients and making Memcached thread safe was a callenge. The priority is simplicity, safety and perfomance.
+   Managing multiple clients and making Memcached thread safe was a challenge. The priority is simplicity, safety and perfomance.
    A first and more common approach was to use coarse-grained locking with thread safety provided by a single global cache lock but      this aproach has a significant performance penalty.
    
    In order to optimize memchached perfomance,I investigated techniques to minimize or eliminate the global cache lock.
