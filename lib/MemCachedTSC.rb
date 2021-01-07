@@ -15,13 +15,6 @@ class MemCacheTSC
     hashFunction = key.length % 17 #its better to evaluate the type of keys that will income, then decide wich hash function use
     return @locksSegments[hashFunction]
   end
-  def flagSemaphore(key)
-    result = false
-    stringKey = "#{key}"
-    semaphore = getMutexSegment(stringKey)
-    semaphore.synchronize {
-      result = true
-    }
     return result
   end
 end
