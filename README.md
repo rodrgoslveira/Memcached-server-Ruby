@@ -130,7 +130,7 @@ Second Console|
    
 #### MemCached Design
 
-    ![Segmented locks](https://github.com/rodrgoslveira/Memcached-server-Ruby/blob/main/images/DCD.jpg)
+   ![DCD](https://github.com/rodrgoslveira/Memcached-server-Ruby/blob/main/images/DCD.jpg)
     
 [Back To The Top](#Memcached-server-Ruby)
 ---
