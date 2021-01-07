@@ -11,25 +11,18 @@ class MemCacheClient
     puts "Opening Client connection"
   end
 
-  def closeConnection
-    self.clientSocket.close
-  end
-
-  def storeMessage(mssg)
-    self.clientSocket.puts(mssg)
-  end
-
   def openConnection
-    self.clientSocket = TCPSocket.open(self.hostname, self.port)
-  end
-  def shutdown
-    self.storeMessage("exit")
-    self.closeConnection
+    @clientSocket = TCPSocket.open(self.hostname, self.port)
   end
 
+  def shutdown
+    storeMessage("exit")
+    closeConnection
+    puts "Closing Client connection"
+  end
   #CACHE METHODS
   def get(keys)
-    self.storeMessage("get #{keys}\r\n")
+    storeMessage("get #{keys}\r\n")
     response = []
     line = ""
     until line == "END\r\n"
@@ -45,7 +38,7 @@ class MemCacheClient
   end
 
   def gets(keys)
-    self.storeMessage("gets #{keys}\r\n")
+    storeMessage("gets #{keys}\r\n")
     response = []
     line = ""
     until line == "END\r\n"
@@ -68,11 +61,13 @@ class MemCacheClient
     responseLine = @clientSocket.gets
     return responseLine.chomp unless responseLine.nil?
   end
+
   def add(key,flags,exptime,bytes,data)
     @clientSocket.puts("add #{key} #{flags} #{exptime} #{bytes}\r\n#{data}\r\n")
     responseLine = @clientSocket.gets
     return responseLine.chomp unless responseLine.nil?
   end
+
   def replace(key,flags,exptime,bytes,data)
     @clientSocket.puts("replace #{key} #{flags} #{exptime} #{bytes}\r\n#{data}\r\n")
     responseLine = @clientSocket.gets
@@ -96,4 +91,13 @@ class MemCacheClient
     responseLine = @clientSocket.gets
     return responseLine.chomp unless responseLine.nil?
   end
-end#class
+
+  private
+  def closeConnection
+    @clientSocket.close
+  end
+
+  def storeMessage(mssg)
+    @clientSocket.puts(mssg)
+  end
+end
