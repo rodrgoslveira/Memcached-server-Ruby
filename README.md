@@ -66,9 +66,9 @@ Storage commands:
    
 ```ruby
   client = MemCacheClient.new('127.0.0.53',2000)  #=> Opening Client connection
-  client.set("key1","wr","0","MainData".bytesize,"MainData") #=> STORED
+  client.set("key1","0","0","MainData".bytesize,"MainData") #=> STORED
   cas_id = client.gets("key1").cas  #=> some_cas_value
-  client.cas("key1","w","3600","Data-Changed".bytesize,cas_id,"Data-Changed")  #=> STORED
+  client.cas("key1","0","3600","Data-Changed".bytesize,cas_id,"Data-Changed")  #=> STORED
   client.get("key1")  #=> Data-Changed
   client.shutdown  #=> Closing Client connection
 ```
@@ -76,7 +76,7 @@ Storage commands:
    
 ```ruby
   client = MemCacheClient.new('127.0.0.53',2000)  #=> Opening Client connection
-  client.set("key7","w","5","MainData".bytesize,"MainData") #=> "STORED"
+  client.set("key7","0","5","MainData".bytesize,"MainData") #=> "STORED"
   client.append("key7","-RightData".bytesize,"-RightData") #=> "STORED"
   client.prepend("key7","LeftData-".bytesize,"LeftData-") #=> "STORED"
   client.get("key7") #=> "LeftData-MainData-RightData"
@@ -86,9 +86,9 @@ Storage commands:
    
 ```ruby
   client = MemCacheClient.new('127.0.0.53',2000)  #=> Opening Client connection
-  client.set("key2","wr","0","MainData2".bytesize,"MainData2") #=> STORED
-  client.set("key3","wr","0","MainData3".bytesize,"MainData3") #=> STORED
-  client.set("key4","wr","0","MainData4".bytesize,"MainData4") #=> STORED
+  client.set("key2","0","0","MainData2".bytesize,"MainData2") #=> STORED
+  client.set("key3","0","0","MainData3".bytesize,"MainData3") #=> STORED
+  client.set("key4","0","0","MainData4".bytesize,"MainData4") #=> STORED
   client.get("key2 key3 key4") #=> [MainData2,MainData3,MainData4]
   client.shutdown  #=> Closing Client connection
 ```
