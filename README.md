@@ -134,9 +134,15 @@ Second Console|
 ---
 ## Test
 
+
 * We need the server MemCachedServer to be running.
 * Console command : ruby mctest.rb
 
+ Important to know that the sockets of the test listen to:
+ 
+ ```ruby
+ @mcClient = MemCacheClient.new('127.0.0.53',2000)
+```
 
 [Back To The Top](#Memcached-server-Ruby)
 
