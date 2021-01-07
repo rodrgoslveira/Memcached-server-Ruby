@@ -65,32 +65,32 @@ Storage commands:
    - Example one: 
    
 ```ruby
-  cliente = MemCacheClient.new('127.0.0.53',2000)  #=> Opening Client connection
-  cliente.set("key1","wr","0","MainData".bytesize,"MainData") #=> STORED
-  cas_id = cliente.gets("key1").cas  #=> some_cas_value
-  cliente.cas("key1","w","3600","Data-Changed".bytesize,cas_id,"Data-Changed")  #=> STORED
-  cliente.get("key1")  #=> Data-Changed
-  cliente.shutdown  #=> Closing Client connection
+  client = MemCacheClient.new('127.0.0.53',2000)  #=> Opening Client connection
+  client.set("key1","wr","0","MainData".bytesize,"MainData") #=> STORED
+  cas_id = client.gets("key1").cas  #=> some_cas_value
+  client.cas("key1","w","3600","Data-Changed".bytesize,cas_id,"Data-Changed")  #=> STORED
+  client.get("key1")  #=> Data-Changed
+  client.shutdown  #=> Closing Client connection
 ```
    - Example two:
    
 ```ruby
-  cliente = MemCacheClient.new('127.0.0.53',2000)  #=> Opening Client connection
-  cliente.set("key7","w","5","MainData".bytesize,"MainData") #=> "STORED"
-  cliente.append("key7","-RightData".bytesize,"-RightData") #=> "STORED"
-  cliente.prepend("key7","LeftData-".bytesize,"LeftData-") #=> "STORED"
-  cliente.get("key7") #=> "LeftData-MainData-RightData"
-  cliente.shutdown
+  client = MemCacheClient.new('127.0.0.53',2000)  #=> Opening Client connection
+  client.set("key7","w","5","MainData".bytesize,"MainData") #=> "STORED"
+  client.append("key7","-RightData".bytesize,"-RightData") #=> "STORED"
+  client.prepend("key7","LeftData-".bytesize,"LeftData-") #=> "STORED"
+  client.get("key7") #=> "LeftData-MainData-RightData"
+  client.shutdown
 ```
    - Example three:
    
 ```ruby
-  cliente = MemCacheClient.new('127.0.0.53',2000)  #=> Opening Client connection
-  cliente.set("key2","wr","0","MainData2".bytesize,"MainData2") #=> STORED
-  cliente.set("key3","wr","0","MainData3".bytesize,"MainData3") #=> STORED
-  cliente.set("key4","wr","0","MainData4".bytesize,"MainData4") #=> STORED
-  cliente.get("key2 key3 key4") #=> [MainData2,MainData3,MainData4]
-  cliente.shutdown  #=> Closing Client connection
+  client = MemCacheClient.new('127.0.0.53',2000)  #=> Opening Client connection
+  client.set("key2","wr","0","MainData2".bytesize,"MainData2") #=> STORED
+  client.set("key3","wr","0","MainData3".bytesize,"MainData3") #=> STORED
+  client.set("key4","wr","0","MainData4".bytesize,"MainData4") #=> STORED
+  client.get("key2 key3 key4") #=> [MainData2,MainData3,MainData4]
+  client.shutdown  #=> Closing Client connection
 ```
 
 #### Console
