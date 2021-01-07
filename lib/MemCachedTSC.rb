@@ -15,6 +15,4 @@ class MemCacheTSC
     hashFunction = key.length % 17 #its better to evaluate the type of keys that will income, then decide wich hash function use
     return @locksSegments[hashFunction]
   end
-    return result
-  end
 end
