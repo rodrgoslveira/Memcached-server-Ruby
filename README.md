@@ -52,7 +52,7 @@ Storage commands:
     
 #### MemCachedServer
 
-   We have to define the host and port for the Socket to listen then tell the server to listen.
+   We have to define the host and port for the Socket to listen then we use the method called "runServerToListen" so that the server     can listen for a client.
 
 ```ruby
   server = MemCacheServer.new('127.0.0.53',2000)
