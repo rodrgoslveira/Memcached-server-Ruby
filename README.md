@@ -20,6 +20,7 @@ has been implemented for [moove it coding challenges](https://github.com/moove-i
 
 - Ruby
 
+
 [Back To The Top](#Memcached-server-Ruby)
 
 ---
@@ -38,8 +39,9 @@ has been implemented for [moove it coding challenges](https://github.com/moove-i
 ```
 #### MemCachedClient
     First we need the server to be running, after that we can define the host and port for the Socket.
-    Here are some basic examples
-    - Example one:
+    Here are some basic examples.
+    
+    - Example one:    
 ```ruby
   cliente = MemCacheClient.new('127.0.0.53',2000)  #=> Opening Client connection
   cliente.set("key1","wr","0","MainData".bytesize,"MainData") #=> STORED
@@ -67,10 +69,14 @@ has been implemented for [moove it coding challenges](https://github.com/moove-i
   cliente.shutdown  #=> Closing Client connection
 ``` 
 #### Console
-    - Console one: 
-        IMAGEEE
-    - Console two:
-        IMAGEEE
+First Console |
+------------ | 
+ ![Server execution](/images/MemcachedServer-example.jpg) | 
+Second Console|
+ ------------ | 
+  ![Client execution](/images/MemcachedClient-example.jpg")| 
+
+
 [Back To The Top](#Memcached-server-Ruby)
 
 ---
@@ -80,6 +86,7 @@ has been implemented for [moove it coding challenges](https://github.com/moove-i
     explained
 #### MemCached Design
     IMAGEEE
+    
 [Back To The Top](#Memcached-server-Ruby)
 
 ---
