@@ -74,7 +74,7 @@ First Console |
  ![Server execution](/images/MemcachedServer-example.jpg) | 
 Second Console|
  ------------ | 
-  ![Client execution](/images/MemcachedClient-example.jpg")| 
+  ![Client execution](https://github.com/rodrgoslveira/Memcached-server-Ruby/blob/main/images/MemcachedClient-example.jpg)| 
 
 
 [Back To The Top](#Memcached-server-Ruby)
