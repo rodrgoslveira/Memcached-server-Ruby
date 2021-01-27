@@ -1,0 +1,6 @@
+require_relative 'data_type_module'
+require_relative 'responses_module'
+require_relative 'cache'
+require_relative 'memcached_client'
+require_relative 'memcached_server'
+require_relative 'memcached_tsc'
