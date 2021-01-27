@@ -48,15 +48,15 @@ Storage commands:
 
 ## How To Use
 
-   To use Memcached we have to require lib/MemChached.rb and include DataTypeModule
+   To use Memcached we have to require lib/memcached.rb and include DataTypeModule
     
 #### MemCachedServer
 
-   We have to define the host and port for the Socket to listen then we use the method called "runServerToListen" so that the server     can listen for a client.
+   We have to define the host and port for the Socket to listen then we use the method called "run_server_to_listen" so that    the server can listen for a client.
 
 ```ruby
   server = MemCacheServer.new('127.0.0.53',2000)
-  server.runServerToListen
+  server.run_server_to_listen
 ```
 #### MemCachedClient
    First we need the server to be running,then we can define the host and port for the Socket.
@@ -139,7 +139,7 @@ Second Console|
 
 :warning:	 We need the server (MemCachedServer) to be running.
 
-* Console command : ruby mctest.rb
+* Console command : ruby mc_test.rb
 
 
 [Back To The Top](#Memcached-server-Ruby)
